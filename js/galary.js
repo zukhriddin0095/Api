@@ -25,7 +25,7 @@ function getUserRow({ title, body }) {
     <div class="alboms">
               <h2 class="name"> ${title}</h2>
               <div class="btns">
-                <button class="photo-row">Photos</button>
+                <button id="myButton">Photos</button>
               </div>
             </div>`;
 }
@@ -40,9 +40,12 @@ getData("https://jsonplaceholder.typicode.com/albums?userId=5", (userId) => {
     galaryRow.innerHTML += getUserRow(alboms);
   });
 
-  const photoROW = document.querySelector(".photo-row");
+  const buttons = document.querySelectorAll("#myButton");
 
-  photoROW.addEventListener("click", () => {
-    location = "../photo.html";
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      location.href = "photos.html"; 
+    });
   });
+
 });

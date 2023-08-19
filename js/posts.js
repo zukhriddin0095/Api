@@ -1,5 +1,3 @@
-
-
 function getData(url, callback) {
   let Xhr = new XMLHttpRequest();
 
@@ -30,7 +28,6 @@ function getUserRow({ title, body }) {
 
 const PostsCard = document.querySelector(".posts-row");
 
-
 PostsCard.innerHTML = `<div class="ring">Loading
   <span></span>
 </div>`;
@@ -40,10 +37,16 @@ getData("https://jsonplaceholder.typicode.com/posts?userId=1", (userId) => {
   userId.map((posts) => {
     PostsCard.innerHTML += getUserRow(posts);
   });
-  
-   const CommentROW = document.querySelector(".Comment-row");
 
-   CommentROW.addEventListener("click", () => {
-     location = "../commit.html";
-   });
+
+const CommentROW = document.querySelectorAll(".Comment-row");
+
+  CommentROW.forEach((button) => {
+    button.addEventListener("click", () => {
+      location.href = "../commit.html";
+    });
+  });
+
 });
+
+

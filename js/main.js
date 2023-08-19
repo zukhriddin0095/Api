@@ -1,4 +1,3 @@
-
 const usersCard = document.querySelector(".cards-row");
 function getData(url, callback) {
   let Xhr = new XMLHttpRequest();
@@ -16,8 +15,8 @@ function getData(url, callback) {
   Xhr.open("get", url);
   Xhr.send();
 }
- function getUserRow({ name, username, email, phone, website,}) {
-   return `
+function getUserRow({ name, username, email, phone, website }) {
+  return `
     <div class="card">
               <h2 class="name"> ${name}</h2>
               <h3 class="username"> ${username}</h3>
@@ -30,42 +29,53 @@ function getData(url, callback) {
                 <button class="Galarey-row">Galary</button>
               </div>
             </div>`;
- }
+}
 
- usersCard.innerHTML = `<div class="ring">Loading
+usersCard.innerHTML = `<div class="ring">Loading
   <span></span>
 </div>`;
 
 getData("https://jsonplaceholder.typicode.com/users", (users) => {
   usersCard.innerHTML = "";
-  
+
   users.map((user) => {
     usersCard.innerHTML += getUserRow(user);
   });
 
-      const TodosRow = document.querySelector(".Todos");
+  // const TodosRow = document.querySelector(".Todos");
+  // const PostsRow = document.querySelector(".Posts");
+  // const Galarey = document.querySelector(".Galarey-row");
 
-      TodosRow.addEventListener("click", () => {
+  // TodosRow.addEventListener("click", () => {
+  //   location = "../todos.html";
+  // });
+
+  // PostsRow.addEventListener("click", () => {
+  //   location = "../posts.html";
+  // });
+
+  // Galarey.addEventListener("click", () => {
+  //   location = "../galary.html";
+  // });
+  // Tugmalarni DOM ga qo'shildikdan keyin tanlang
+  const tugmalar = document.querySelectorAll(".btns button");
+
+  tugmalar.forEach((tugma) => {
+    tugma.addEventListener("click", (tapaqchi) => {
+      const tugmaMatni = tapaqchi.target.innerText;
+
+      // Tugma bosilganiga qarab yo'naltirish
+      if (tugmaMatni === "Todos") {
         location = "../todos.html";
-      });
-
-      const PostsRow = document.querySelector(".Posts");
-
-      PostsRow.addEventListener("click", () => {
+      } else if (tugmaMatni === "Posts") {
         location = "../posts.html";
-      });
-
-      const Galarey = document.querySelector(".Galarey-row");
-      Galarey.addEventListener("click", () => {
+      } else if (tugmaMatni === "Galary") {
         location = "../galary.html";
-      });
-
+      }
+    });
+  });
 });
 
 
-
-
-
-
-
+ 
 
